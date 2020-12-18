@@ -63,7 +63,7 @@
                 <tbody >
                 <tr 
                     
-                    v-for="(business, index) in allBusinesses"
+                    v-for="(business, index) in businesses"
                     :key="index">
                     <td><a href="">{{ business.title }}</a></td>
                     <td>{{ business.owner }}</td>
@@ -109,55 +109,19 @@
 
 <script>
 // import BusinessDataService from "../services/BusinessDataService";
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
-  name: "BusinessList",
-  
-  data() {
-    return {
-    //   businesses: [],
-    // //   currentBusiness: null,
-    // //   currentIndex: -1,
-    //   vat: "",
-    };
-  },
-  methods: {
-    ...mapActions(["fetchBusinesses"])
-
-    // retrieveBusinesses() {
-    //   BusinessDataService.getAll()
-    //     .then((response) => {
-    //       this.businesses = response.data;
-    //       console.log(response.data);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
-    // refreshList() {
-    //   this.retrieveBusinesses();
-    // //   this.currentBusiness = null;
-    // //   this.currentIndex = -1;
-    // },
-    // searchVat() {
-    //   BusinessDataService.findByVat(this.vat)
-    //     .then(response => {
-    //       this.businesses = response.data;
-    //       console.log(response.data);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
-  },
-  computed: mapGetters(["allBusinesses"]),
-  created(){
-    this.fetchBusinesses();
-  }
-  // mounted() {
-  //   this.retrieveBusinesses();
-  // }
+    name: "BusinessList",
+    computed: {
+        ...mapState("business", ["businesses"]),
+    },
+    mounted(){
+        this.getBusinesses();
+    },
+    methods: {
+        ...mapActions("business", ["getBusinesses"])
+    }
 };
 </script>
 

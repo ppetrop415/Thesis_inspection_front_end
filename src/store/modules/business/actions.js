@@ -1,5 +1,7 @@
+import Business from "../../../services/BusinessDataService";
+
 export default {
-async fetchBusinesses({ commit }) {
+    async getBusinesses({ commit }) {
         await Business.getAll()
         .then(response => {
             commit('SET_BUSINESSES', response.data);
