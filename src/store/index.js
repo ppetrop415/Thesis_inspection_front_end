@@ -1,6 +1,9 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
-import businesses from './modules/businesses';
+
+
+
+import business from './modules/business';
 
 // Load Vuex
 Vue.use(Vuex);
@@ -8,6 +11,6 @@ Vue.use(Vuex);
 // Create store
 export default new Vuex.Store({
     modules: {
-      businesses
+      business
     }
 });
