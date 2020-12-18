@@ -69,7 +69,7 @@
                                 {{ branchstore.state }}, {{ branchstore.region }}, Ελλάδα
                                 <br />
                                 <small
-                                  ><strong>Katastima:</strong> {{ branchstore.title }}</small
+                                  ><strong>Store:</strong> {{ branchstore.title }}</small
                                 >
                                 <br />
                                 <small
@@ -79,7 +79,7 @@
                                 <br />
                                 <small
                                   ><strong>Health Regulator:</strong>
-                                  {{ branchstore.health_regulator.get_full_name }}</small
+                                  {{ branchstore.health_regulator }}</small
                                 >
                                 <br />
                                 <small

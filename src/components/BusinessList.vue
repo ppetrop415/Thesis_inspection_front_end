@@ -51,27 +51,20 @@
             <table class="table table-striped m-0">
                 <thead>
                 <tr>
-                    <th style="width: 150px">Title</th>
+                    <th style="width: 200px">Title</th>
                     <th>Owner</th>
-                    <th>Health Regulator</th>
                     <th>VAT</th>
-                    <th>Activity</th>
-                    <th>State</th>
-                    <th style="width: 100px">Classify</th>
+                    <th>State</th>   
                 </tr>
                 </thead>
                 <tbody >
-                <tr 
-                    
+                <tr                    
                     v-for="(business, index) in businesses"
                     :key="index">
                     <td><a href="">{{ business.title }}</a></td>
-                    <td>{{ business.owner }}</td>
-                    <td>Kyriakaki Sofia</td>
-                    <td>{{ business.vat }}</td>
-                    <td>ΕΜΕ Πλήρους Επεξεργασίας</td>
-                    <td>Καλλιθέα</td>
-                    <td><span class="badge badge-success">LOW</span></td>
+                    <td>{{ business.owner_full_name }}</td>                    
+                    <td>{{ business.vat }}</td>                    
+                    <td>Καλλιθέα</td>               
                 </tr>
                 </tbody>
             </table>
