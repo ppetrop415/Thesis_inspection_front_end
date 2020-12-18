@@ -17,7 +17,7 @@ const actions = {
    async fetchBusinesses({ commit }) {
         await Business.getAll()
         .then(response => {
-            commit('setBusinesses', response.data);
+            commit('SET_BUSINESSES', response.data);
         })
         .catch((e) => {
             console.log(e);
@@ -26,14 +26,24 @@ const actions = {
     },
     async fetchBusiness({commit}, slug) {
         await Business.get(slug).then(response => {
-            commit('setbusiness', response.data)
+            commit('SET_BUSINESS', response.data)
         }) 
+    },
+    async searchBusiness({commit}, vat) {
+        await Business.findByVat(vat)
+        .then(response => {
+            commit('SEARCH_BUSINESS', response.data)
+        })
+        .catch((e) => {
+            console.log(e);
+        });
     }
 };
 
 const mutations = {
-    setBusinesses: (state, businesses) => (state.businesses = businesses),
-    setBusiness: (state, business) => (state.businesses = business)
+    SET_BUSINESSES: (state, businesses) => (state.businesses = businesses),
+    SET_BUSINESS: (state, business) => (state.businesses = business),
+    SEARCH_BUSINESS: (state, business) => (state.business = business),
 };
 
 export default {

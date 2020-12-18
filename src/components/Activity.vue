@@ -32,10 +32,10 @@
               <!-- Table row -->
               <div class="row">
                 <div class="col-12 table-responsive">
-                  <table class="table" v-for="(tab, index) in currentActivity.tabs" :key="index">
+                  <table class="table" v-for="(category, index) in currentActivity.categories" :key="index">
                     <thead class="bg-dark" >
                       <tr>
-                        <th>{{tab.title}}</th>
+                        <th>{{category.title}}</th>
                         <th style="text-align: center; width: 10%">
                           Αποτέλεσμα
                         </th>
@@ -44,16 +44,16 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody v-for="(item, index) in tab.items" :key="index">
+                    <tbody v-for="(question, index) in category.questions" :key="index">
                       <tr>
-                        <td>{{item.title}}</td>
+                        <td>{{question.title}}</td>
                         <td style="text-align: center">
                           <div
                             class="btn-group btn-group-toggle"
                             data-toggle="buttons"
                           >
                             <label class="btn btn-outline-danger btn-lg" 
-                                v-for="(choice, index) in item.choices"
+                                v-for="(choice, index) in question.choices"
                                 :key="index">
                               <input
                                 type="radio"
