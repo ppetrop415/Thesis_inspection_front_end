@@ -72,7 +72,7 @@ export default {
       activities: [],
     //   currentBusiness: null,
     //   currentIndex: -1,
-      notify_number: "",
+      // notify_number: "",
     };
   },
   methods: {
