@@ -30,19 +30,13 @@
                 <tr>
                     <th style="width: 15px">#</th>
                     <th>title</th>
-
                 </tr>
                 </thead>
                 <tbody >
-                <tr 
-                    
+                <tr                     
                     v-for="(activity, index) in activities"
                     :key="index">
-
-
-
                     <td>{{activity.order}}</td>
-
                     <router-link :to="{ name: 'activity', params: { slug: activity.slug }}"><td>{{ activity.title }}</td></router-link>
                 </tr>
                 </tbody>

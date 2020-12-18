@@ -7,10 +7,12 @@ Vue.use(Vuex);
 
 //import modules
 import business from './modules/business';
+import activity from './modules/activity';
 
 // Create store
 export default new Vuex.Store({
     modules: {
-      business
+      business,
+      activity
     }
 });
