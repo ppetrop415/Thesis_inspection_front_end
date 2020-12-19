@@ -94,31 +94,22 @@
 </template>
 
 <script>
-import ActivitiesDataService from "../services/ActivitiesDataService";
+import { mapActions, mapGetters } from "vuex";
+
 
 export default {
   name: "Activity",
-  data() {
-    return {
-      currentActivity: null,
-    };
-  },
-  methods: {
-    getActivity(slug) {
-      ActivitiesDataService.get(slug)
-        .then((response) => {
-          this.currentActivity = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+  computed: {
+        ...mapGetters("activity", ["currentActivity"]),
     },
-  },
   mounted() {
     this.getActivity(this.$route.params.slug);
   },
+  methods: {
+	...mapActions("activity", ["getActivity"])
+  },
 };
+
 </script>
 
 <style>

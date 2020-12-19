@@ -1,4 +1,4 @@
 export default {
     allActivities: state => state.activities,
-    activity: state => state.activity,
+    currentActivity: state => state.activity,
 };

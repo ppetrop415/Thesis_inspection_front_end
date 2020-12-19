@@ -16,7 +16,7 @@ import Sidebar from '../components/Sidebar.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
-    name: 'Inspections',
+    name: 'Inspection',
     components: {
         Navbar,
         Sidebar,

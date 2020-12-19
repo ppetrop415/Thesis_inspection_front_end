@@ -34,7 +34,7 @@
                 </thead>
                 <tbody >
                 <tr                     
-                    v-for="(activity, index) in activities"
+                    v-for="(activity, index) in allActivities"
                     :key="index">
                     <td>{{activity.order}}</td>
                     <router-link :to="{ name: 'activity', params: { slug: activity.slug }}"><td>{{ activity.title }}</td></router-link>
@@ -57,38 +57,20 @@
 </template>
 
 <script>
-import ActivitiesDataService from "../services/ActivitiesDataService";
+import { mapActions, mapGetters } from "vuex";
+
 
 export default {
   name: "ActivityList",
-  data() {
-    return {
-      activities: [],
-    //   currentBusiness: null,
-    //   currentIndex: -1,
-      // notify_number: "",
-    };
+  computed: {
+        ...mapGetters("activity", ["allActivities"]),
+    },
+  mounted() {
+    this.getActivities();
   },
   methods: {
-    retrieveActivities() {
-      ActivitiesDataService.getAll()
-        .then((response) => {
-          this.activities = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-    refreshList() {
-      this.retrieveActivities();
-    //   this.currentBusiness = null;
-    //   this.currentIndex = -1;
-    },
+	...mapActions("activity", ["getActivities"])
   },
-  mounted() {
-    this.retrieveActivities();
-  }
 };
 </script>
 

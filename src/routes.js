@@ -5,6 +5,7 @@ import NewInspection from "./components/NewInspection.vue"
 import BranchstoreList from "./components/BranchstoreList.vue"
 import ActivityList from "./components/ActivityList.vue"
 import Activity from "./components/Activity.vue"
+import Inspection from "./views/Inspection"
 
 //Next you need to call Vue.use(Router) to make sure that Router is added as a middleware to our Vue project.
 Vue.use(VueRouter)
@@ -24,6 +25,11 @@ export default new VueRouter({
         {
             path: '/inspections',
             name: 'inspections',
+        },
+        {
+            path: '/inspection/:slug',
+            name: 'inspection',
+            component: Inspection,
         },
         {
             path: '/new-inspection',
