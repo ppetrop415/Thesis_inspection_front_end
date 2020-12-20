@@ -99,11 +99,12 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Activity",
+  props: ['slug'],
   computed: {
         ...mapGetters("activity", ["currentActivity"]),
     },
   mounted() {
-    this.getActivity(this.$route.params.slug);
+    this.getActivity(this.slug);
   },
   methods: {
 	...mapActions("activity", ["getActivity"])

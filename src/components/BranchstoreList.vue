@@ -49,12 +49,10 @@
               <table class="table table-striped m-0">
                 <thead>
                   <tr>
-                    <th style="width: 150px">Title</th>
-                    <th>Owner</th>
+                    <th>Title</th>
                     <th>Health Regulator</th>
                     <th>VAT</th>
                     <th>Notify Number</th>
-                    <th>Activity</th>
                     <th>State</th>
                     <th>Zip Code</th>
                     <th style="width: 100px">Classify</th>
@@ -65,11 +63,9 @@
                     <td>
                       <a href="">{{ branchstore.business }}</a>
                     </td>
-                    <td>{{ branchstore.business }}</td>
                     <td>{{ branchstore.health_regulator.get_full_name }}</td>
                     <td>{{ branchstore.vat }}</td>
                     <td>{{ branchstore.notify_number }}</td>
-                    <td>{{ branchstore.activity }}</td>
                     <td>{{ branchstore.state }}</td>
                     <td>{{ branchstore.zip_code }}</td>
                     <td><span class="badge badge-success">LOW</span></td>

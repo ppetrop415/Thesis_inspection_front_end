@@ -5,18 +5,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Mc Donalts Inspection</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.html">New inspection</a></li>
-              <li class="breadcrumb-item active">Mc Donalts</li>
-            </ol>
-          </div>
+        <div class="row">
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
 
     <section class="content">
@@ -27,10 +19,8 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print mb-3">
               <div class="col-12">
-                <button type="button" class="btn btn-success float-right"><i class="fas fa-print"></i>Print</button>
-                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                  <i class="fas fa-download"></i> PDF
-                </button>
+                <button type="button" class="btn btn-danger ml-5 pl-4 pr-4">Back</button>
+                <button type="button" class="btn btn-primary float-right mr-5 pl-3 pr-3" style="margin-right: 5px;">Submit</button>
               </div>
             </div>
 
@@ -42,8 +32,7 @@
               <div class="row">
                 <div class="col-12">
                   <h4>
-                    <i class="fas fa-globe"></i> Sanitary, Inc.
-                    <small class="float-right">Date: 2/10/2020 Time: 11:30</small>
+                    <strong>{{branchstore.business}}</strong><br>
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -52,7 +41,7 @@
               <!-- Inpection UUID row-->
               <div class="row mb-3 mt-3">
                 <div class="col-sm-8">
-                  <b>Inspection ID:</b> 123e4567-e89b-12d3-a456-426614174000
+                  <b>Total score:</b> 150<br>
                 </div>  
                 <div class="col-sm-4">
                   <b>Classification:</b> <span class="badge badge-danger">High Risk</span>
@@ -61,7 +50,7 @@
               </div>
               <!-- info row -->
               <div class="row invoice-info">
-                <div class="col-sm-6 invoice-col">
+                <!-- <div class="col-sm-6 invoice-col">
                   From
                   <address>
                     <strong>Admin, Inc.</strong><br>
@@ -70,40 +59,34 @@
                     Phone: (804) 123-5432<br>
                     Email: info@almasaeedstudio.com
                   </address>
-                </div>
+                </div> -->
                 <!-- /.col -->
                 <div class="col-sm-6 invoice-col">
-                  To
                   <address>
-                    <strong>MC Donalts</strong><br>
-                    Oidipodos 33, 10443<br>
-                    Athens, Greece<br>
-                    Phone: (+30) 2105152778<br>
-                    Email: mcdonalts@gmail.com
+                    <br>
+                    <b>Address:</b> {{branchstore.address}} {{branchstore.address_number}}, {{branchstore.zip_code}}<br>
+                    <b>State:</b> {{branchstore.state}}, Ελλάδα<br>
+                    <b>Phone:</b> (+30) 2105152778<br>
+                    <b>Email:</b> {{branchstore.email}}
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6 invoice-col">
-                
-                  
                   <br>
-                  <b>Inspector 1:</b> Petropoulos Panagiotis<br>
-                  <b>Inspector 2:</b> Kyriakaki Sofia<br>
-                  <b>Owner:</b> Kyriakaki Sofia<br>
-                  <b>Health Regulator:</b> Kyriakaki Sofia<br>
+                  <b>Notify Number:</b> {{branchstore.notify_number}}<br>
+                  <b>Vat:</b> {{branchstore.vat}}<br>
+                  <b>Health Regulator:</b> {{branchstore.health_regulator.get_full_name}}<br>
                   <br>
                 </div>
                 <!-- /.col -->
 
-                <div class="col-sm-6 invoice-col">
+                <div class="col-sm-12 invoice-col">
                 
                   
-                  <br>
-                  <b>Notify Number:</b> 1157878 (ver 1)<br>
+                 
                   <b>Type of Activity:</b> Επιχείρηση Μαζικής Εστίασης Πλήρους Επεξεργασίας<br>
                   <br>
-                  <b>Total score:</b> 150<br>
-                  <br>
+
                   
                 </div>
                 <!-- /.col -->
@@ -114,64 +97,55 @@
               <!-- Table row -->
               <div class="row">
                 <div class="col-12 table-responsive">
-                  <table class="table">
-                    <thead class="bg-dark">
-                    <tr>
-                      <th>Αρχεία Τεκμηρίωσης Διαδικασιών</th>
-                      <th style="text-align: center;">Αποτέλεσμα</th>
-                      <th style="text-align: center; width: 300px;">Παρατηρήσεις</th>
-                    </tr>
+                  <table class="table" v-for="(category, index) in branchstore.activity.categories" :key="index">
+                    <thead class="bg-dark" >
+                      <tr>
+                        <th>{{category.title}}</th>
+                        <th style="text-align: center; width: 10%">
+                          Αποτέλεσμα
+                        </th>
+                        <th style="text-align: center; width: 25%">
+                          Παρατηρήσεις
+                        </th>
+                      </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                      <td>Αρχείο προσωπικού</td>
-                      <td style="text-align: center;">6</td>
-                      <td>Έλειψη πιστοποιητικού υγείας</td>
-
-                    </tr>
-                    <tr>
-                      <td>Αρχείο Επιχείρησης</td>
-
-                      <td style="text-align: center;">0</td>
-                      <td style="text-align: center;">-</td>
-
-                    </tr>
-                    <tr>
-                      <td>Αρχείο νερού</td>
-                      <td style="text-align: center;">0</td>
-                      <td style="text-align: center;">-</td>
-
-                    </tr>
-                    <tr>
-                      <td>Αρχείο καθαρισμού - απολύμανσης</td>
-                      <td style="text-align: center;">0</td>
-                      <td style="text-align: center;">-</td>
-
-                    </tr>
-                    <tr>
-                      <td>Αρχείο απεντόμωσης - μυοκτονίας</td>
-                      <td style="text-align: center;">3</td>
-                      <td style="text-align: center;">Έλλειψη άδειας της συνεργαζόμενης επιχείρησης</td>
-
-                    </tr>
-                    <tr>
-                      <td>Αρχείο θερμοκρασιών</td>
-                      <td style="text-align: center;">0</td>
-                      <td style="text-align: center;">-</td>
-
-                    </tr>
-                    <tr>
-                      <td>Αρχείο πρώτων υλών</td>
-                      <td style="text-align: center;">0</td>
-                      <td style="text-align: center;">-</td>
-
-                    </tr>
+                    <tbody v-for="(question, index) in category.questions" :key="index">
+                      <tr>
+                        <td>{{question.title}}</td>
+                        <td style="text-align: center">
+                          <div
+                            class="btn-group btn-group-toggle"
+                            data-toggle="buttons"
+                          >
+                            <label class="btn btn-outline-danger btn-lg" 
+                                v-for="(choice, index) in question.choices"
+                                :key="index">
+                              <input
+                                type="radio"
+                                name="options"
+                                id="option_a1"
+                                autocomplete="off"
+                              />
+                              {{ choice.number }}
+                            </label>
+                          </div>
+                        </td>
+                        <td style="text-align: center ">
+                          <button class="btn btn-primary btn-lg">
+                            <i class="fas fa-info-circle"></i>
+                          </button>
+                          <button class="ml-2 btn btn-info btn-lg">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->
+
               <!-- /.col -->
             </div>
             <!-- /.row -->
@@ -194,11 +168,20 @@
 
 <script>
 
-
+import { mapActions, mapState } from "vuex";
 
 export default {
     name: 'Inspection',
-    props: ["branchstore"],
+    props: ["slug"],
+    computed: {
+        ...mapState("branchstore", ["branchstore"]),
+    },
+    mounted() {
+        this.getBranchstore(this.slug);
+    },
+    methods: {
+        ...mapActions("branchstore", ["getBranchstore"])
+    }
 
 };
 

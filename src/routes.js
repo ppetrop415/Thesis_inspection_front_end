@@ -40,6 +40,7 @@ export default new VueRouter({
             path: '/new-inspection/:slug',
             name: 'inspection',
             component: Inspection,
+            props: true,
         },
         {
             path: '/businesses',
@@ -68,6 +69,7 @@ export default new VueRouter({
             path: '/activities/:slug',
             name: 'activity',
             component: Activity,
+            props:true,
         },
 
     ]

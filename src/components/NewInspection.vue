@@ -33,13 +33,11 @@
                           type="search"
                           class="form-control form-control-lg"
                           placeholder="Search with AFM"
-                          v-model="notify_number"
-                          />
+                          />                          
                           <div class="input-group-append">
                             <button
                               class="btn btn-lg btn-default"
                               type="submit"
-                              @click="searchNotifyNumber"
                             >
                               <i class="fa fa-search"></i>
                             </button>
@@ -112,50 +110,34 @@
 </template>
 
 <script>
-import BranchstoreDataService from "../services/BranchstoreDataService";
-
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
-  //   components: { SearchRessultBranchstore },
   name: "NewInspection",
-  
-  data() {
-    return {
-      branchstores: [],
-      //   currentBusiness: null,
-      //   currentIndex: -1,
-      notify_number: "",
-    };
-  },
-  methods: {
-    retrieveBranchstores() {
-      BranchstoreDataService.getAll()
-        .then((response) => {
-          this.branchstores = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-    refreshList() {
-      this.retrieveBranchstores();
-      //   this.currentBusiness = null;
-      //   this.currentIndex = -1;
-    },
-    searchNotifyNumber() {
-      BranchstoreDataService.findByNotifyNumber(this.notify_number)
-        .then(response => {
-          this.branchstores = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
+  computed: {
+    ...mapState("branchstore", ["branchstores", "vat"]),
+    // vat: {
+    //   get(){
+    //     return this.$store.branchstore.vat
+    //   },
+    //   set(value){
+    //     this.$store.commit('SEARCH_BRANCHSTORE', value)
+    //   }
+    // }
   },
   mounted() {
-    this.retrieveBranchstores();
+    this.getBranchstores();
+    
   },
+  methods: {
+    ...mapActions("branchstore", ["getBranchstores"]),
+    ...mapActions("branchstore", ["searchBranchstore"]),
+    ...mapMutations("branchstore", ["SEARCH_BRANCHSTORE"]),
+
+    searchNotifyNumber() {
+      this.searchBranchstore(this.vat)
+    }
+
+  }
 };
 </script>
 
