@@ -7,12 +7,14 @@ Vue.use(Vuex);
 
 //import modules
 import business from './modules/business';
+import branchstore from './modules/branchstore'
 import activity from './modules/activity';
 
 // Create store
 export default new Vuex.Store({
     modules: {
-      business,
-      activity
+        business,
+        branchstore,
+        activity,
     }
 });

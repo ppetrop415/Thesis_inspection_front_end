@@ -10,13 +10,13 @@ export default {
 				console.log(e)
 			});
 	},
-	async getActivity({commit}, slug) {
+	async getActivity({ commit }, slug) {
 		await Activity.get(slug)
-		.then(response => {
-			commit('SET_ACTIVITY', response.data)
-		})
-		.catch(e => {
-			console.log(e)
-		});
+			.then(response => {
+				commit('SET_ACTIVITY', response.data);
+			})
+			.catch(e => {
+				console.log(e)
+			});
 	}
 }

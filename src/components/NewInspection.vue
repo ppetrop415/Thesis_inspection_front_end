@@ -79,20 +79,16 @@
                                 <br />
                                 <small
                                   ><strong>Health Regulator:</strong>
-                                  {{ branchstore.health_regulator }}</small
+                                  {{ branchstore.health_regulator.get_full_name }}</small
                                 >
                                 <br />
                                 <small
-                                  ><strong>Activity:</strong> {{ branchstore.activity }}</small
+                                  ><strong>Activity:</strong> {{ branchstore.activity.title }}</small
                                 >
                                 <br />
                                 <small><strong>VAT:</strong> {{ branchstore.vat }}</small>
                               </p>
-                              <a
-                                href=""
-                                class="btn btn btn-danger float-right mb-2"
-                                >Start</a
-                              >
+                              <router-link :to="{name: 'inspection', params: {slug: branchstore.slug}}" class="btn btn btn-danger float-right mb-2">Start</router-link>
                               <!-- <router-link :to="{ name: 'activity', params: { slug: activity.slug }}" class="btn btn btn-danger float-right mb-2">{{ activity.title }}</router-link> -->
                             </div>
                           </div>
@@ -121,6 +117,7 @@ import BranchstoreDataService from "../services/BranchstoreDataService";
 export default {
   //   components: { SearchRessultBranchstore },
   name: "NewInspection",
+  
   data() {
     return {
       branchstores: [],

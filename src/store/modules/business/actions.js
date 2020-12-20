@@ -6,7 +6,7 @@ export default {
         .then(response => {
             commit('SET_BUSINESSES', response.data);
         })
-        .catch((e) => {
+        .catch(e => {
             console.log(e);
         });
         
@@ -21,7 +21,7 @@ export default {
         .then(response => {
             commit('SEARCH_BUSINESS', response.data)
         })
-        .catch((e) => {
+        .catch(e => {
             console.log(e);
         });
     }

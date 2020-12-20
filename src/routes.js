@@ -26,15 +26,20 @@ export default new VueRouter({
             path: '/inspections',
             name: 'inspections',
         },
-        {
-            path: '/inspection/:slug',
-            name: 'inspection',
-            component: Inspection,
-        },
+        // {
+        //     path: '/inspection/:slug',
+        //     name: 'inspection',
+        //     component: Inspection,
+        // },
         {
             path: '/new-inspection',
             name: 'new-inspection',
             component: NewInspection,
+        },
+        {
+            path: '/new-inspection/:slug',
+            name: 'inspection',
+            component: Inspection,
         },
         {
             path: '/businesses',
