@@ -9,6 +9,7 @@ Vue.use(Vuex);
 import business from './modules/business';
 import branchstore from './modules/branchstore'
 import activity from './modules/activity';
+import auth from './modules/auth';
 
 // Create store
 export default new Vuex.Store({
@@ -16,5 +17,6 @@ export default new Vuex.Store({
         business,
         branchstore,
         activity,
+        auth,
     }
 });

@@ -112,10 +112,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+
+            <router-link to="/login" class="nav-link">
+
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>Log Out</p>
-            </a>
+
+            </router-link>
           </li>
         </ul>
       </nav>

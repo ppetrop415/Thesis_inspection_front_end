@@ -6,6 +6,8 @@ import BranchstoreList from "./components/BranchstoreList.vue"
 import ActivityList from "./components/ActivityList.vue"
 import Activity from "./components/Activity.vue"
 import Inspection from "./views/Inspection"
+import Login from "./views/Login"
+import Dashboard from "./views/Dashboard"
 
 //Next you need to call Vue.use(Router) to make sure that Router is added as a middleware to our Vue project.
 Vue.use(VueRouter)
@@ -18,9 +20,9 @@ export default new VueRouter({
     base: process.env.BASE_URL,
     routes: [
         {
-            path: '/',
+            path: '/dashboard',
             name: 'dashboard',
-            
+            component: Dashboard
         },
         {
             path: '/inspections',
@@ -71,6 +73,11 @@ export default new VueRouter({
             component: Activity,
             props:true,
         },
+        {
+            path:'/login',
+            name:'login',
+            component: Login,
+        }
 
     ]
 })

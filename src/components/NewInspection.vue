@@ -1,7 +1,15 @@
 <template>
+
   <div class="content-wrapper">
+
+    <Navbar />
+    <Sidebar />
+    <Footer />
+    <router-view />
+
     <!-- Main content -->
     <section class="content">
+      
       <div class="container-fluid">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -60,31 +68,31 @@
                               <div class="float-right">
                                 {{ branchstore.notify_number }}
                               </div>
-                              <h3>{{ branchstore.title }}</h3>
+                              <h3>{{ branchstore.business }}</h3>
                               <p>
                                 {{ branchstore.address }} {{ branchstore.address_number }}, {{ branchstore.zip_code }}
                                 <br />
                                 {{ branchstore.state }}, {{ branchstore.region }}, Ελλάδα
                                 <br />
                                 <small
-                                  ><strong>Store:</strong> {{ branchstore.title }}</small
+                                  ><strong>Κατάστημα:</strong> {{ branchstore.title }}</small
                                 >
                                 <br />
                                 <small
-                                  ><strong>Owner:</strong> Petropoulos
+                                  ><strong>Ιδιοκτήτης:</strong> Petropoulos
                                   Panagiotis</small
                                 >
                                 <br />
                                 <small
-                                  ><strong>Health Regulator:</strong>
+                                  ><strong>Υγειονομικός Υπεύθυνος:</strong>
                                   {{ branchstore.health_regulator.get_full_name }}</small
                                 >
                                 <br />
                                 <small
-                                  ><strong>Activity:</strong> {{ branchstore.activity.title }}</small
+                                  ><strong>Δραστηριότητα:</strong> {{ branchstore.activity.title }}</small
                                 >
                                 <br />
-                                <small><strong>VAT:</strong> {{ branchstore.vat }}</small>
+                                <small><strong>ΑΦΜ:</strong> {{ branchstore.vat }}</small>
                               </p>
                               <router-link :to="{name: 'inspection', params: {slug: branchstore.slug}}" class="btn btn btn-danger float-right mb-2">Start</router-link>
                               <!-- <router-link :to="{ name: 'activity', params: { slug: activity.slug }}" class="btn btn btn-danger float-right mb-2">{{ activity.title }}</router-link> -->
@@ -111,8 +119,17 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
+import Navbar from "../components/Navbar.vue";
+import Sidebar from "../components/Sidebar.vue";
+import Footer from "../components/Footer.vue";
+
 export default {
   name: "NewInspection",
+  components: {
+    Navbar,
+    Sidebar,
+    Footer,
+  },
   computed: {
     ...mapState("branchstore", ["branchstores", "vat"]),
     // vat: {
