@@ -45,7 +45,7 @@
               <div class="col-12">
 
               <button class="btn btn-danger btn-block" :disabled="loading">
-                <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                <span v-show="loading" class="spinner-border spinner-border-sm"> </span>
                 <span>Sign In</span>
               </button>
 
