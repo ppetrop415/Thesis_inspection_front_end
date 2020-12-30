@@ -23,9 +23,9 @@ export default new VueRouter({
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
-            meta: {
-                requiresLogin: true
-              }
+            // meta: {
+            //     requiresLogin: true
+            //   }
         },
         {
             path: '/inspections',

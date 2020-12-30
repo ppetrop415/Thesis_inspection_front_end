@@ -61,7 +61,8 @@
                   <!-- /.col -->
                   <div class="col-sm-6 invoice-col">
                     <br />
-                    <b>Αριθμός Άδειας Λειτουργίας:</b> {{ branchstore.notify_number }}<br />
+                    <b>Αριθμός Άδειας Λειτουργίας:</b>
+                    {{ branchstore.notify_number }}<br />
                     <b>ΑΦΜ:</b> {{ branchstore.vat }}<br />
                     <b>Υγειονομικός Υπεύθυνος:</b>
                     {{ branchstore.health_regulator.first_name }}
@@ -89,11 +90,12 @@
                     >
                       <thead class="bg-dark">
                         <tr>
+                          <th></th>
                           <th>{{ category.title }}</th>
                           <th style="text-align: center; width: 10%">
                             Αποτέλεσμα
                           </th>
-                          <th style="text-align: center; width: 25%">
+                          <th style="text-align: center; width: 30%">
                             Παρατηρήσεις
                           </th>
                         </tr>
@@ -103,7 +105,12 @@
                         :key="index"
                       >
                         <tr>
-                          <td>{{ question.title }}</td>
+                          <td>
+                            <i class="fas fa-check-circle text-success"></i>
+                          </td>
+                          <td>
+                            {{ question.title }}
+                          </td>
                           <td style="text-align: center">
                             <div
                               class="btn-group btn-group-toggle"
@@ -125,11 +132,25 @@
                             </div>
                           </td>
                           <td style="text-align: center">
-                            <button class="btn btn-primary btn-lg">
+                            <button
+                              type="button"
+                              class="btn btn-primary btn-lg"
+                              data-toggle="modal"
+                              data-target="#modal-lg"
+                              @click="sendDescription(question)"
+                            >
                               <i class="fas fa-info-circle"></i>
                             </button>
-                            <button class="ml-2 btn btn-info btn-lg">
+                            <button
+                              type="button"
+                              class="ml-2 btn btn-info btn-lg"
+                              data-toggle="modal"
+                              data-target="#modal-comment"
+                            >
                               <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="ml-2 btn btn-danger btn-lg" @click="addToCart">
+                              <i class="fas fa-location-arrow"></i>
                             </button>
                           </td>
                         </tr>
@@ -148,6 +169,85 @@
           </div>
           <!-- /.col -->
         </div>
+
+        <div class="modal fade" id="modal-lg">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Description</h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>{{ selectedQuestion.description }}</p>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <div class="modal fade" id="modal-comment">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Παρατηρήσεις - Ελλείψεις</h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    v-model="comment"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
       </section>
 
       <!-- /.content -->
@@ -176,6 +276,13 @@ export default {
     GoBackButton,
     SubmitButton,
   },
+
+  data() {
+    return {
+      selectedQuestion: "",
+      comment: "",
+    };
+  },
   computed: {
     ...mapState("branchstore", ["branchstore"]),
   },
@@ -184,6 +291,19 @@ export default {
   },
   methods: {
     ...mapActions("branchstore", ["getBranchstore"]),
+    ...mapActions("cart", ["addQuestionToCart"]),
+    sendDescription(question) {
+      this.selectedQuestion = question;
+    },
+
+    addToCart() {
+      this.addQuestionToCart({
+        question: this.branchstore.activity.categories.question,
+        choise: this.choise,
+        comment: this.comment
+      })
+    }
+
   },
 };
 </script>
