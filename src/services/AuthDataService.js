@@ -21,7 +21,8 @@ export default {
             password: user.password,
             password2: user.password2,
             first_name: user.first_name,
-            last_name: user.last_name
+            last_name: user.last_name,
+            member: user.member
         });
     },
     logout() {

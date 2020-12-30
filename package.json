@@ -17,7 +17,7 @@
     "eslint-loader": "^4.0.2",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
-    "vee-validate": "^3.4.5",
+    "vee-validate": "^2.2.15",
     "vue": "^2.6.11",
     "vue-body-class": "^3.0.2",
     "vue-router": "^3.4.9",

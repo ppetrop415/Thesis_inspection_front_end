@@ -11,6 +11,19 @@ import 'admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js'
 Vue.use(VeeValidate);
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresLogin)) {
+    if (!store.auth.getters.loggedIn) {
+      next({ name: 'login' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+
 new Vue({
   router,
   store,

@@ -22,7 +22,10 @@ export default new VueRouter({
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: Dashboard
+            component: Dashboard,
+            meta: {
+                requiresLogin: true
+              }
         },
         {
             path: '/inspections',
