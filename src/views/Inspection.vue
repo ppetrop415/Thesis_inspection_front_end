@@ -126,6 +126,8 @@
                                   name="options"
                                   id="option_a1"
                                   autocomplete="off"
+                                  v-model="picked"
+                                  :value="choice.number"
                                 />
                                 {{ choice.number }}
                               </label>
@@ -149,7 +151,7 @@
                             >
                               <i class="fas fa-edit"></i>
                             </button>
-                            <button class="ml-2 btn btn-danger btn-lg" @click="addToCart">
+                            <button class="ml-2 btn btn-danger btn-lg" @click="addToCart()">
                               <i class="fas fa-location-arrow"></i>
                             </button>
                           </td>
@@ -280,6 +282,7 @@ export default {
   data() {
     return {
       selectedQuestion: "",
+      picked: "",
       comment: "",
     };
   },
@@ -298,8 +301,8 @@ export default {
 
     addToCart() {
       this.addQuestionToCart({
-        question: this.branchstore.activity.categories.question,
-        choise: this.choise,
+        question: this.question,
+        choise: this.picked,
         comment: this.comment
       })
     }
