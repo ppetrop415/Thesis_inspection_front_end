@@ -1,5 +1,5 @@
-export const addQuestionToCart = ({ commit }, { question, choise, comment }) => {
-    commit('ADD_TO_CART', { question, choise, comment });
+export const addQuestionToCart = ({ commit }, { question, choise }) => {
+    commit('ADD_TO_CART', { question, choise });
 
     // Cart.store({
     //     product_id: product.id,

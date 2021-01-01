@@ -27,7 +27,7 @@
               <div class="invoice p-3 mb-3">
                 <!-- title row -->
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-12 text-center">
                     <h4>
                       <strong>{{ branchstore.business }}</strong
                       ><br />
@@ -79,90 +79,17 @@
                 </div>
                 <!-- /.row -->
 
-                <!-- Table row -->
                 <div class="row">
-                  <div class="col-12 table-responsive">
-                    <table
-                      class="table"
-                      v-for="(category, index) in branchstore.activity
-                        .categories"
-                      :key="index"
-                    >
-                      <thead class="bg-dark">
-                        <tr>
-                          <th></th>
-                          <th>{{ category.title }}</th>
-                          <th style="text-align: center; width: 10%">
-                            Αποτέλεσμα
-                          </th>
-                          <th style="text-align: center; width: 30%">
-                            Παρατηρήσεις
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        v-for="(question, index) in category.questions"
-                        :key="index"
-                      >
-                        <tr>
-                          <td>
-                            <i class="fas fa-check-circle text-success"></i>
-                          </td>
-                          <td>
-                            {{ question.title }}
-                          </td>
-                          <td style="text-align: center">
-                            <div
-                              class="btn-group btn-group-toggle"
-                              data-toggle="buttons"
-                            >
-                              <label
-                                class="btn btn-outline-danger btn-lg"
-                                v-for="(choice, index) in question.choices"
-                                :key="index"
-                              >
-                                <input
-                                  type="radio"
-                                  name="options"
-                                  id="option_a1"
-                                  autocomplete="off"
-                                  v-model="picked"
-                                  :value="choice.number"
-                                />
-                                {{ choice.number }}
-                              </label>
-                            </div>
-                          </td>
-                          <td style="text-align: center">
-                            <button
-                              type="button"
-                              class="btn btn-primary btn-lg"
-                              data-toggle="modal"
-                              data-target="#modal-lg"
-                              @click="sendDescription(question)"
-                            >
-                              <i class="fas fa-info-circle"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="ml-2 btn btn-info btn-lg"
-                              data-toggle="modal"
-                              data-target="#modal-comment"
-                            >
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="ml-2 btn btn-danger btn-lg" @click="addToCart()">
-                              <i class="fas fa-location-arrow"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
+                  <div class="col-sm-12">
+                    <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
 
+                    <inspection-accordion
+                      v-for="category in branchstore.activity.categories"
+                      :key="category.slug"
+                      :category="category"
+                    />
+                  </div>
+                </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->
@@ -171,85 +98,6 @@
           </div>
           <!-- /.col -->
         </div>
-
-        <div class="modal fade" id="modal-lg">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Description</h4>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>{{ selectedQuestion.description }}</p>
-              </div>
-              <div class="modal-footer justify-content-between">
-                <button
-                  type="button"
-                  class="btn btn-default"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary">
-                  Save changes
-                </button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-
-        <div class="modal fade" id="modal-comment">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Παρατηρήσεις - Ελλείψεις</h4>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="form-group">
-                  <textarea
-                    class="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                    v-model="comment"
-                  ></textarea>
-                </div>
-              </div>
-              <div class="modal-footer justify-content-between">
-                <button
-                  type="button"
-                  class="btn btn-default"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary">
-                  Save changes
-                </button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
       </section>
 
       <!-- /.content -->
@@ -266,6 +114,7 @@ import Sidebar from "../components/Sidebar.vue";
 import Footer from "../components/Footer.vue";
 import GoBackButton from "../components/GoBackButton";
 import SubmitButton from "../components/SubmitButton";
+import InspectionAccordion from "../components/inspectionAccordion.vue";
 
 export default {
   name: "Inspection",
@@ -277,15 +126,9 @@ export default {
     Footer,
     GoBackButton,
     SubmitButton,
+    InspectionAccordion,
   },
 
-  data() {
-    return {
-      selectedQuestion: "",
-      picked: "",
-      comment: "",
-    };
-  },
   computed: {
     ...mapState("branchstore", ["branchstore"]),
   },
@@ -294,19 +137,6 @@ export default {
   },
   methods: {
     ...mapActions("branchstore", ["getBranchstore"]),
-    ...mapActions("cart", ["addQuestionToCart"]),
-    sendDescription(question) {
-      this.selectedQuestion = question;
-    },
-
-    addToCart() {
-      this.addQuestionToCart({
-        question: this.question,
-        choise: this.picked,
-        comment: this.comment
-      })
-    }
-
   },
 };
 </script>

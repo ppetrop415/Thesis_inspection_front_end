@@ -1,4 +1,4 @@
-export const ADD_TO_CART = (state, { question, choise, comment }) => {
+export const ADD_TO_CART = (state, { question, choise }) => {
 
     // let productInCart = state.cart.find(item => {
     //     return item.question.id === question.id;
@@ -12,6 +12,6 @@ export const ADD_TO_CART = (state, { question, choise, comment }) => {
     state.cart.push({
         question,
         choise,
-        comment
+        
     })
 }
