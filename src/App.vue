@@ -1,9 +1,6 @@
 <template>
     <div class="wrapper">
         <div id="app">
-            <!-- <Navbar />
-            <Sidebar />
-            <Footer /> -->
             <router-view />
         </div>
     </div>
